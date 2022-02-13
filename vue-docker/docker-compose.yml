@@ -11,9 +11,11 @@ services:
   proxy-reverse:
     depends_on:
       - front
-    build:
-      dockerfile: ./.nginx/Dockerfile
-      context: .
+    image: nginx:latest
+      volumes:
+        - .:/usr/share/nginx/html/
+        - ./.nginx/default.conf:/etc/nginx/conf.d/default.conf
+        - ./.nginx/certs:/etc/ssl/certs/nginx/
     ports:
       - 80:80
       - 443:443
