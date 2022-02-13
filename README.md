@@ -22,3 +22,9 @@ module.exports = {
 	}
 }
 ```
+
+# PHP Docker
+
+Base template for PHP project (like Laravel). Place the code on the root directory.
+
+The entry point is /public/index.php . The default config is mapped all routes to index.php

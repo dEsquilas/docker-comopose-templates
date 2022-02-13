@@ -1,0 +1,19 @@
+version: '3'
+services:
+  php:
+    image: php:8.1-fpm
+    volumes:
+      - ./:/var/www/
+      - .:/usr/share/nginx/html/
+  proxy-reverse:
+    depends_on:
+      - php
+    image: nginx:latest
+    volumes:
+      - .:/usr/share/nginx/html/
+      - ./.nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./.nginx/certs:/etc/ssl/certs/nginx/
+    ports:
+      - 80:80
+      - 443:443
+
