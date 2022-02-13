@@ -1,0 +1,20 @@
+version: '3'
+services:
+  front:
+    image: node:latest
+    working_dir: /home/node/app
+    volumes:
+      - ./:/home/node/app
+    ports:
+      - 8080:8080
+    command: "npm run serve"
+  proxy-reverse:
+    depends_on:
+      - front
+    build:
+      dockerfile: ./.nginx/Dockerfile
+      context: .
+    ports:
+      - 80:80
+      - 443:443
+
